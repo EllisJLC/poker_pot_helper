@@ -7,30 +7,30 @@ class Street(Enum):
   RIVER = 3
 
 class Player():
-  def __init__(self, position, folded, street_bet):
+  def __init__(self, position, folded, streetBet):
     self.position = position # int, Seat position 
     self.folded = folded # bool, true = not in hand, false = in hand
-    self.street_bet = street_bet # int, Amount bet in current street
+    self.streetBet = streetBet # int, Amount bet in current street
 
-class Table_info():
-  def __init__(self, players, street, to_call, pot, pot_with_bets, street_total, hand_players, cap, dealer_position):
+class TableInfo():
+  def __init__(self, players, street, toCall, pot, potWithBets, streetTotal, handPlayers, cap, dealerPosition):
     self.players = players # int, Number of players in game
     self.street = street # enum, Street
-    self.to_call = to_call # int, Bet amount, amount to call
+    self.toCall = toCall # int, Bet amount, amount to call
     self.pot = pot # int, Amount in pot
-    self.pot_with_bets = pot_with_bets # int, Amount in pot, including bets in current street
-    self.street_total = street_total # int, Amount in bets in current street
-    self.hand_players = hand_players # int, Number of players in current hand
+    self.potWithBets = potWithBets # int, Amount in pot, including bets in current street
+    self.streetTotal = streetTotal # int, Amount in bets in current street
+    self.handPlayers = handPlayers # int, Number of players in current hand
     self.cap = cap # int, Max bet that hand, empty for no limit cap
-    self.dealer_position = dealer_position #int, Position of the dealer button
+    self.dealerPosition = dealerPosition #int, Position of the dealer button
 
-def initialize_table(seats, table, options):
+def initializeTable(seats, table, options):
 
   # Dealer position (option)
-  if options.dealer_position:
-    dealer_position = options.dealer_position
+  if options.dealerPosition:
+    dealerPosition = options.dealerPosition
   else:
-    dealer_position = seats
+    dealerPosition = seats
 
   # Cap (option)
   if options.cap:
@@ -40,9 +40,9 @@ def initialize_table(seats, table, options):
 
   if seats <= 9:
     for i in seats:
-      new_player = Player(i, False, 0)
-      table.append(new_player)
+      newPlayer = Player(i, False, 0)
+      table.append(newPlayer)
   else:
     return "Too many players"
   
-  table_info = Table_info(seats, seats, 0, 0, 0, 0, 0, seats, cap, dealer_position)
+  tableInfo = TableInfo(seats, seats, 0, 0, 0, 0, 0, seats, cap, dealerPosition)
